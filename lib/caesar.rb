@@ -9,7 +9,7 @@ class CaesarCipher
 
   def encode_message
     # iterate through each chr of str.
-    message.each_char do |char|
+    @message.each_char do |char|
       encode_char(char)
     end
   end
@@ -19,9 +19,9 @@ class CaesarCipher
   def encode_char(char)
     # if letter use algo to return new value
     @encoded_message += if char.ord.between?(97, 122)
-                          (char.ord - 97 + key % 26 + 97).chr
+                          (((char.ord - 97 + @key) % 26) + 97).chr
                         elsif char.ord.between?(65, 90)
-                          ((char.ord - 65 + key) % 26 + 65).chr
+                          (((char.ord - 65 + @key) % 26) + 65).chr
                         else
                           char # else return chr
                         end
